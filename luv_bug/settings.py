@@ -5,10 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(5xu=i_%*n9lg(n69feu6*#2x)e^f-c2p=51(n$r7fww7bn-c3'
 
 DEBUG = False
-ALLOWED_HOSTS = [
-    'gallery.lasvegasluvbugweddings.com',
-    'www.gallery.lasvegasluvbugweddings.com'
-    ]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
