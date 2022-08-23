@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gallery{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/fancybox.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/single-gallery.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="first-section my-5">
+        <div class="container-main py-3">
+            <p class="mb-0 text-center fs-2 gallery-title">{{ gallery_name }}</p>
+        </div>
+    </section>
+    <section class="my-5">
+        <div class="container">
+            <p class="mb-0 text-center">
+                <a href="{% url 'gallery' %}" class="back-gallery text-decoration-none text-uppercase">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    </svg>
+                    Back To Main Gallery Page
+                </a>
+            </p>
+        </div>
+    </section>
+    <section class="my-5">
+        <div class="container">
+            <div class="gallery row gy-5 row-cols-1 row-cols-sm-2 row-cols-md-4">
+                {% for image in images %}
+                    <div class="grid-item col">
+                        <a data-fancybox="LuvBugGallery" href="{{ image.image.url }}" data-caption="{{ image.title }}">
+                            <img src="{{ image.image.url }}">
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block js %}
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/fancybox.min.js' %}"></script>
+    <script>
+        $('[data-fancybox="LuvBugGallery"]').fancybox({
+            buttons: [
+                'download',
+                'zoom',
+                'share',
+                'slideShow',
+                'fullScreen',
+                'play',
+                'thumbs',
+                'close'
+            ],
+            protect: true,
+        });
+    </script>
+{% endblock %}

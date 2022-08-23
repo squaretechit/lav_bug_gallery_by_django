@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gallery{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="first-section mt-5">
+        <div class="container-main py-3">
+            <p class="mb-0 text-center fs-2 gallery-title">LUV BUG WEDDINGS GALLERY</p>
+            <p class="text-center mb-0">(click on albums to open and scroll through each gallery)</p>
+        </div>
+    </section>
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                {% for gallery in galleries %}
+                    <div class="col-lg-6 col-md-6 col-sm-12 my-5 ">
+                        <a class="text-decoration-none" href="{% url 'single_gallery' url=gallery.url %}">
+                            <div class="gallery-images">
+                                <img src="{{ gallery.image.url }}" alt="{{ gallery.title }}">
+                            </div>
+                            <p class="mb-0 text-center fs-4 text-white mt-3">{{ gallery.title }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
